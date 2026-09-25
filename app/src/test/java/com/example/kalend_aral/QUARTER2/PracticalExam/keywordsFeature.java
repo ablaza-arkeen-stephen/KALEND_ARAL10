@@ -7,10 +7,11 @@ public class keywordsFeature {
     public static void keyFeature(Scanner scanner) {
         boolean keyWording = false;
         List<String> listedEvents = new ArrayList<>();
-        listedEvents.add("Barangay championship");
-        listedEvents.add("Barangay basketball tryouts");
-        listedEvents.add("Monday Zumba");
-        listedEvents.add("Mang nonong pa birthday chess tournament");
+
+        listedEvents.add("Foundation Day");
+        listedEvents.add("Intramurals");
+        listedEvents.add("Recognition Day");
+        listedEvents.add("Foundation Week Opening");
 
         System.out.println("--- KEY WORD SEARCH ---");
 
