@@ -1,13 +1,13 @@
 package com.example.kalend_aral.QUARTER2.PracticalExam;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-
-public class updatedEvents {
+class updatedEvents {
     public static void updateFeature(Scanner scanner) {
-
-        scanner = new Scanner(System.in);
+        // REMOVED: scanner = new Scanner(System.in);
+        // Reason: Use the passed scanner parameter instead of overriding it.
 
         // Admin login
         String adminUsername = "admin";
@@ -42,10 +42,8 @@ public class updatedEvents {
             System.out.print("Enter event description: ");
             String eventDescription = scanner.nextLine();
 
-            // Store event in a file
-            try {
-                FileWriter file = new FileWriter("calendar.txt", true);
-
+            // Store event in a file using try-with-resources
+            try (FileWriter file = new FileWriter("calendar.txt", true)) {
                 file.write("===== EVENT =====\n");
                 file.write("Event Name: " + eventName + "\n");
                 file.write("Date: " + eventDate + "\n");
@@ -53,8 +51,6 @@ public class updatedEvents {
                 file.write("Location: " + eventLocation + "\n");
                 file.write("Description: " + eventDescription + "\n");
                 file.write("=================\n\n");
-
-                file.close();
 
                 System.out.println("\nEvent successfully saved!");
                 System.out.println("The event was stored in calendar.txt");
@@ -67,6 +63,7 @@ public class updatedEvents {
             System.out.println("\nInvalid admin username or password.");
         }
 
-        scanner.close();
+        // REMOVED: scanner.close();
+        // Reason: Closing a scanner wrapping System.in kills console input for the entire app.
     }
 }
