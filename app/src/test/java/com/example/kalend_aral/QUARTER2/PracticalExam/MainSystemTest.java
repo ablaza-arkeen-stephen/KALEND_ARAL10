@@ -30,7 +30,7 @@ public class MainSystemTest {
         System.out.println("Generating inputs for Add Event...");
 
         simulatedUserInput.append("2\n");
-        // Main Menu option 2 = Updated Events
+        // Main Menu option 2 = Add Event
 
         simulatedUserInput.append("admin\n");
         // Admin username
@@ -78,11 +78,11 @@ public class MainSystemTest {
         // Main Menu option 3 = Staff Login
 
         simulatedUserInput.append(
-                "ArvinandFriendlyNeighborhoodSpiderman\n"
+                "Admin\n"
         );
         // Staff username
 
-        simulatedUserInput.append("67676767\n");
+        simulatedUserInput.append("676767\n");
         // Staff password
 
         simulatedUserInput.append(
@@ -104,6 +104,21 @@ public class MainSystemTest {
 
         simulatedUserInput.append("Foundation\n");
         // Keyword to search
+
+
+        /*
+         * ==========================================
+         * INTERACTION #5: DELETE EVENT
+         * ==========================================
+         */
+
+        System.out.println("Generating inputs for Delete Event...");
+
+        simulatedUserInput.append("5\n");
+        // Main Menu option 5 = Delete
+
+        simulatedUserInput.append("Foundation Day\n");
+        // Event name to delete
 
 
         /*

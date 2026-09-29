@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class staffPassstaffUserstaffLog {
     public static void staffFeature(Scanner scanner) {
-        String correctUser = "ArvinandFriendlyNeighborhoodSpiderman";
-        String correctPass = "67676767";
+        String correctUser = "Admin";
+        String correctPass = "676767";
 
         System.out.println("--- STAFF LOG IN MENU ---");
 

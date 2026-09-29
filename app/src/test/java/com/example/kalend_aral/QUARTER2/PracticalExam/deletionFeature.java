@@ -1,43 +1,88 @@
+package com.example.kalend_aral.QUARTER2.PracticalExam;
 
-        package com.example.kalend_aral.QUARTER2.PracticalExam;
-
-import java.util.ArrayList;
+import java.io.*;
 import java.util.Scanner;
 
 public class deletionFeature {
 
-    ArrayList<String> eventList = new ArrayList<>();
+    public static void deletionFeature(Scanner scanner) {
 
-    // DELETING FEATURE
-    public void DeletingComponent(Scanner scanner) {
+        System.out.println("===== DELETE EVENT =====");
 
-        boolean isDeleting = true;
+        System.out.print("Enter Event Name to delete: ");
+        String deleteInput = scanner.nextLine().trim();
 
-        while (isDeleting) {
+        if (deleteInput.isEmpty()) {
+            System.out.println("No input entered.");
+            return;
+        }
 
-            System.out.print("Enter Event ID to delete: ");
-            String deleteInput = scanner.nextLine();
+        File inputFile = new File("calendar.txt");
+        File tempFile = new File("calendar_temp.txt");
 
-            if (deleteInput.isEmpty()) {
-                System.out.println("No input entered.\nPlease try again.");
+        boolean eventDeleted = false;
+        StringBuilder currentEvent = new StringBuilder();
 
-            } else if (eventList.contains(deleteInput)) {
+        try (
+                BufferedReader reader =
+                        new BufferedReader(new FileReader(inputFile));
 
-                eventList.remove(deleteInput);
+                BufferedWriter writer =
+                        new BufferedWriter(new FileWriter(tempFile))
+        ) {
 
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+
+                if (line.equals("===== EVENT =====")) {
+                    currentEvent.setLength(0);
+                }
+
+                currentEvent.append(line).append("\n");
+
+                if (line.equals("=================")) {
+
+                    String eventText = currentEvent.toString();
+
+                    if (eventText.toLowerCase().contains(
+                            ("Event Name: " + deleteInput).toLowerCase())) {
+
+                        eventDeleted = true;
+
+                    } else {
+
+                        writer.write(eventText);
+                    }
+
+                    currentEvent.setLength(0);
+                }
+            }
+
+            if (eventDeleted) {
                 System.out.println(
-                        "Event '" + deleteInput + "' deleted successfully.\n"
+                        "Event '" + deleteInput +
+                                "' deleted successfully."
                 );
-
-                isDeleting = false;
-
             } else {
-
                 System.out.println(
-                        "We do not recognize the Event ID.\nPlease try again."
+                        "Event '" + deleteInput +
+                                "' was not found."
                 );
             }
+
+        } catch (IOException e) {
+
+            System.out.println(
+                    "An error occurred while deleting the event."
+            );
+        }
+
+        if (eventDeleted) {
+            inputFile.delete();
+            tempFile.renameTo(inputFile);
+        } else {
+            tempFile.delete();
         }
     }
 }
-

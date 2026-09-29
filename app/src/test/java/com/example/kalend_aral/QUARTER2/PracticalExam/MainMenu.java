@@ -11,7 +11,7 @@ public class MainMenu {
         while (isRunning) {
             System.out.println("--- KALEND_ARAL ---");
             System.out.println("1. Upcoming Events");
-            System.out.println("2. Update Events");
+            System.out.println("2. Add Event");
             System.out.println("3. Staff Login");
             System.out.println("4. Keywords");
             System.out.println("5. Delete");

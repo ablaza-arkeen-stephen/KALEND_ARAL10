@@ -11,29 +11,32 @@ public class upcomingEvents {
 
         System.out.println("===== UPCOMING EVENTS =====");
 
+        boolean eventFoundAny = false;
+        boolean readingEvent = false;
+
         try (BufferedReader reader = new BufferedReader(
                 new FileReader("calendar.txt"))) {
 
             String line;
-            boolean eventFound = false;
 
             while ((line = reader.readLine()) != null) {
 
                 if (line.equals("===== EVENT =====")) {
-                    eventFound = true;
+                    eventFoundAny = true;
+                    readingEvent = true;
                     System.out.println();
                 }
 
-                if (eventFound) {
+                if (readingEvent) {
                     System.out.println(line);
                 }
 
                 if (line.equals("=================")) {
-                    eventFound = false;
+                    readingEvent = false;
                 }
             }
 
-            if (!eventFound) {
+            if (!eventFoundAny) {
                 System.out.println("No upcoming events found.");
             }
 
@@ -42,5 +45,6 @@ public class upcomingEvents {
         }
     }
 }
+
 
 
